@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Popcorn Proof
 
-## Getting Started
+Popcorn Proof is a mobile-first Base mini app for a simple onchain cinema ritual.
+Users connect a wallet, choose `Pop Kernel`, `Salt Bucket`, or `Cheer Show`, and
+the app reads personal and total counters from the `PopcornProof` contract.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Wagmi
+- Viem
+
+## Contract
+
+The frontend ABI matches this minimal contract:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract PopcornProof {
+    mapping(address => uint256) public userPops;
+    mapping(address => uint256) public userSalts;
+    mapping(address => uint256) public userCheers;
+
+    uint256 public totalPops;
+    uint256 public totalSalts;
+    uint256 public totalCheers;
+
+    event KernelPopped(address indexed user, uint256 userPops, uint256 totalPops);
+    event BucketSalted(address indexed user, uint256 userSalts, uint256 totalSalts);
+    event ShowCheered(address indexed user, uint256 userCheers, uint256 totalCheers);
+
+    function popKernel() external {
+        unchecked {
+            userPops[msg.sender] += 1;
+            totalPops += 1;
+        }
+
+        emit KernelPopped(msg.sender, userPops[msg.sender], totalPops);
+    }
+
+    function saltBucket() external {
+        unchecked {
+            userSalts[msg.sender] += 1;
+            totalSalts += 1;
+        }
+
+        emit BucketSalted(msg.sender, userSalts[msg.sender], totalSalts);
+    }
+
+    function cheerShow() external {
+        unchecked {
+            userCheers[msg.sender] += 1;
+            totalCheers += 1;
+        }
+
+        emit ShowCheered(msg.sender, userCheers[msg.sender], totalCheers);
+    }
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copy `.env.example` to `.env.local` and fill:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+NEXT_PUBLIC_POPCORN_PROOF_ADDRESS=0x3e51E2aF65e1802565BcA6f3715072Aa3ca8216B
+NEXT_PUBLIC_BASE_APP_ID=6a252f3a95cfa95c11629bb3
+NEXT_PUBLIC_BASE_BUILDER_CODE=bc_...
+```
 
-## Learn More
+The Base and Talent verification tags are hard-coded in `src/app/layout.tsx`.
+The request requires these tags to be written directly in the head rather than
+generated through the Next.js metadata API.
 
-To learn more about Next.js, take a look at the following resources:
+`NEXT_PUBLIC_BASE_BUILDER_CODE` is encoded to hex in `src/lib/wagmi.ts` and
+passed as `dataSuffix` on every `writeContract` call.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Local Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install
+npm run dev
+```
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Deployment requires real GitHub and Vercel tokens. The pasted request contained
+placeholders, so this repository is ready to push and deploy once credentials
+are provided.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Recommended Vercel settings:
+
+- Disable Deployment Protection.
+- Set all environment variables listed above.
+- Confirm the page source contains `<meta name="base:app_id" ...>`.
+- Confirm Base App iframe access works with the headers in `vercel.json`.

@@ -1,0 +1,92 @@
+export const popcornProofAbi = [
+  {
+    type: "function",
+    name: "userPops",
+    stateMutability: "view",
+    inputs: [{ name: "", type: "address" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "userSalts",
+    stateMutability: "view",
+    inputs: [{ name: "", type: "address" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "userCheers",
+    stateMutability: "view",
+    inputs: [{ name: "", type: "address" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "totalPops",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "totalSalts",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "totalCheers",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "popKernel",
+    stateMutability: "nonpayable",
+    inputs: [],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "saltBucket",
+    stateMutability: "nonpayable",
+    inputs: [],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "cheerShow",
+    stateMutability: "nonpayable",
+    inputs: [],
+    outputs: [],
+  },
+  {
+    type: "event",
+    name: "KernelPopped",
+    inputs: [
+      { name: "user", type: "address", indexed: true },
+      { name: "userPops", type: "uint256", indexed: false },
+      { name: "totalPops", type: "uint256", indexed: false },
+    ],
+  },
+  {
+    type: "event",
+    name: "BucketSalted",
+    inputs: [
+      { name: "user", type: "address", indexed: true },
+      { name: "userSalts", type: "uint256", indexed: false },
+      { name: "totalSalts", type: "uint256", indexed: false },
+    ],
+  },
+  {
+    type: "event",
+    name: "ShowCheered",
+    inputs: [
+      { name: "user", type: "address", indexed: true },
+      { name: "userCheers", type: "uint256", indexed: false },
+      { name: "totalCheers", type: "uint256", indexed: false },
+    ],
+  },
+] as const;
