@@ -69,15 +69,16 @@ Copy `.env.example` to `.env.local` and fill:
 ```bash
 NEXT_PUBLIC_POPCORN_PROOF_ADDRESS=0x3e51E2aF65e1802565BcA6f3715072Aa3ca8216B
 NEXT_PUBLIC_BASE_APP_ID=6a252f3a95cfa95c11629bb3
-NEXT_PUBLIC_BASE_BUILDER_CODE=bc_...
+NEXT_PUBLIC_BASE_BUILDER_CODE=bc_x452k0jv
+NEXT_PUBLIC_BASE_BUILDER_ENCODED_STRING=0x62635f783435326b306a760b0080218021802180218021802180218021
 ```
 
 The Base and Talent verification tags are hard-coded in `src/app/layout.tsx`.
 The request requires these tags to be written directly in the head rather than
 generated through the Next.js metadata API.
 
-`NEXT_PUBLIC_BASE_BUILDER_CODE` is encoded to hex in `src/lib/wagmi.ts` and
-passed as `dataSuffix` on every `writeContract` call.
+`NEXT_PUBLIC_BASE_BUILDER_ENCODED_STRING` is passed as `dataSuffix` on every
+`writeContract` call.
 
 ## Local Development
 
@@ -88,9 +89,7 @@ npm run dev
 
 ## Deploy
 
-Deployment requires real GitHub and Vercel tokens. The pasted request contained
-placeholders, so this repository is ready to push and deploy once credentials
-are provided.
+Deployment is configured for GitHub and Vercel.
 
 Recommended Vercel settings:
 

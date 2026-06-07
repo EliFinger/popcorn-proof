@@ -16,9 +16,11 @@ export const baseAppId =
   process.env.NEXT_PUBLIC_BASE_APP_ID ?? "6a252f3a95cfa95c11629bb3";
 
 export const builderCode =
-  process.env.NEXT_PUBLIC_BASE_BUILDER_CODE ?? "";
+  process.env.NEXT_PUBLIC_BASE_BUILDER_CODE ?? "bc_x452k0jv";
 
-export const attributionDataSuffix = encodeBuilderCode(builderCode);
+export const attributionDataSuffix = (process.env
+  .NEXT_PUBLIC_BASE_BUILDER_ENCODED_STRING ??
+  "0x62635f783435326b306a760b0080218021802180218021802180218021") as Hex;
 
 export const queryClient = new QueryClient();
 
@@ -43,21 +45,3 @@ export const wagmiConfig = createConfig({
     });
   },
 });
-
-function encodeBuilderCode(value: string): Hex {
-  const normalized = value.trim();
-
-  if (/^0x[0-9a-fA-F]+$/.test(normalized) && normalized.length > 2) {
-    return normalized as Hex;
-  }
-
-  const bytes =
-    typeof TextEncoder !== "undefined"
-      ? new TextEncoder().encode(normalized)
-      : Buffer.from(normalized, "utf8");
-
-  const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0"))
-    .join("");
-
-  return `0x${hex || "00"}`;
-}
