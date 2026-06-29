@@ -96,3 +96,11 @@ NEXT_PUBLIC_BASE_BUILDER_ENCODED_STRING=0x62635f783435326b306a760b00802180218021
 ```
 
 `NEXT_PUBLIC_POPCORN_PROOF_ADDRESS` is the deployed `PopcornProof` contract address used by the frontend.
+
+`NEXT_PUBLIC_BASE_BUILDER_ENCODED_STRING` is passed as `dataSuffix` on every `writeContract` call.
+
+The Base and Talent verification tags are hard-coded in `src/app/layout.tsx`.
+
+These tags are written directly in the document head rather than generated through the Next.js metadata API.
+
+## Local Development
