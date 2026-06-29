@@ -142,3 +142,11 @@ Recommended Vercel settings:
 ## Notes
 
 The app is designed for a compact mobile experience.
+
+The frontend expects the deployed contract to match the ABI described above.
+
+If the contract address changes, update `NEXT_PUBLIC_POPCORN_PROOF_ADDRESS` before redeploying.
+
+If verification values change, update the relevant environment variables and the hard-coded tags in `src/app/layout.tsx`.
+
+Keep `vercel.json` in sync with the iframe access requirements for the Base App environment.
