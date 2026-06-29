@@ -59,3 +59,10 @@ contract PopcornProof {
     }
 
     function saltBucket() external {
+        unchecked {
+            userSalts[msg.sender] += 1;
+            totalSalts += 1;
+        }
+
+        emit BucketSalted(msg.sender, userSalts[msg.sender], totalSalts);
+    }
