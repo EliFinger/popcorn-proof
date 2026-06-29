@@ -112,3 +112,11 @@ npm install
 ```
 
 Start the development server:
+
+```bash
+npm run dev
+```
+
+Open the local site in a browser and connect a wallet that can interact with the configured contract.
+
+## Usage
