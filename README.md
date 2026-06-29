@@ -74,3 +74,10 @@ contract PopcornProof {
         }
 
         emit ShowCheered(msg.sender, userCheers[msg.sender], totalCheers);
+    }
+}
+```
+
+## Configuration
+
+Create a local environment file from the example file:
