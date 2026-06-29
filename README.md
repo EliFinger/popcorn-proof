@@ -104,3 +104,11 @@ The Base and Talent verification tags are hard-coded in `src/app/layout.tsx`.
 These tags are written directly in the document head rather than generated through the Next.js metadata API.
 
 ## Local Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
