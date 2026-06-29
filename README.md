@@ -51,3 +51,11 @@ contract PopcornProof {
 
     function popKernel() external {
         unchecked {
+            userPops[msg.sender] += 1;
+            totalPops += 1;
+        }
+
+        emit KernelPopped(msg.sender, userPops[msg.sender], totalPops);
+    }
+
+    function saltBucket() external {
