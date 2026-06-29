@@ -21,3 +21,9 @@ The interface also reads the current values for the connected wallet and the glo
 GitHub: https://github.com/EliFinger/popcorn-proof.git
 
 ## Tech Stack
+
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Wagmi
+- Viem
