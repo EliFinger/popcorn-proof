@@ -81,3 +81,11 @@ contract PopcornProof {
 ## Configuration
 
 Create a local environment file from the example file:
+
+```bash
+cp .env.example .env.local
+```
+
+Fill in the required public values:
+
+```bash
