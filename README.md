@@ -127,3 +127,11 @@ Open the local site in a browser and connect a wallet that can interact with the
 4. Select `Pop Kernel`, `Salt Bucket`, or `Cheer Show`.
 5. Confirm the transaction in the wallet.
 6. Wait for the updated counters to appear in the interface.
+
+## Deployment
+
+Deployment is configured for GitHub and Vercel.
+
+Recommended Vercel settings:
+
+- Disable Deployment Protection.
