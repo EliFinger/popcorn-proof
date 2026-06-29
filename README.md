@@ -44,3 +44,10 @@ contract PopcornProof {
     uint256 public totalPops;
     uint256 public totalSalts;
     uint256 public totalCheers;
+
+    event KernelPopped(address indexed user, uint256 userPops, uint256 totalPops);
+    event BucketSalted(address indexed user, uint256 userSalts, uint256 totalSalts);
+    event ShowCheered(address indexed user, uint256 userCheers, uint256 totalCheers);
+
+    function popKernel() external {
+        unchecked {
