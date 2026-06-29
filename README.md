@@ -13,3 +13,11 @@ The app presents three ritual actions:
 - `Cheer Show`
 
 Each action writes to the contract and increments a matching counter.
+
+The interface also reads the current values for the connected wallet and the global totals.
+
+## Repository
+
+GitHub: https://github.com/EliFinger/popcorn-proof.git
+
+## Tech Stack
