@@ -135,3 +135,10 @@ Deployment is configured for GitHub and Vercel.
 Recommended Vercel settings:
 
 - Disable Deployment Protection.
+- Set all environment variables listed in the configuration section.
+- Confirm the page source contains `<meta name="base:app_id" ...>`.
+- Confirm Base App iframe access works with the headers in `vercel.json`.
+
+## Notes
+
+The app is designed for a compact mobile experience.
