@@ -66,3 +66,11 @@ contract PopcornProof {
 
         emit BucketSalted(msg.sender, userSalts[msg.sender], totalSalts);
     }
+
+    function cheerShow() external {
+        unchecked {
+            userCheers[msg.sender] += 1;
+            totalCheers += 1;
+        }
+
+        emit ShowCheered(msg.sender, userCheers[msg.sender], totalCheers);
