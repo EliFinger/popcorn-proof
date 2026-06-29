@@ -35,3 +35,12 @@ The frontend ABI matches the following minimal contract:
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
+
+contract PopcornProof {
+    mapping(address => uint256) public userPops;
+    mapping(address => uint256) public userSalts;
+    mapping(address => uint256) public userCheers;
+
+    uint256 public totalPops;
+    uint256 public totalSalts;
+    uint256 public totalCheers;
